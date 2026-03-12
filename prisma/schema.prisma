@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Quote {
+  id                String   @id @default(cuid())
+  customerName      String
+  items             String   // JSON string of CartItem[]
+  totalAmount       Float
+  status            String   @default("PENDING")
+  vatRate           Float    @default(20)
+  discountAmount    Float    @default(0)
+  createdAt         DateTime @default(now())
+}
+
+model Product {
+  id           String      @id @default(cuid())
+  name         String
+  productType  String
+  category     String?
+  unit         String      @default("Adet")
+  specs        String?
+  defaultPrice Float?
+  imagePath    String?
+  prompt       String?
+  isActive     Boolean     @default(true)
+  sortOrder    Int         @default(0)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  variants     ProductVariant[]
+
+  @@unique([name, productType])
+}
+
+model ProductVariant {
+  id           String   @id @default(cuid())
+  productId    String
+  name         String
+  unit         String   @default("Adet")
+  specs        String?
+  defaultPrice Float?
+  isActive     Boolean  @default(true)
+  sortOrder    Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  product      Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([productId, name])
+}
+
+model Shipment {
+  id                 Int      @id @default(autoincrement())
+  driverName         String
+  licensePlate       String
+  driverPhone        String
+  destination        String
+  waybillNumber      String?  @unique
+  waybillType        String?
+  waybillDescription String?
+  invoiceNumber      String?
+  invoiceType        String   @default("e-fatura")
+  invoiceDate        String
+  paymentDay         String   @default("")
+  paymentStatus      String   @default("Bekliyor")
+  bankName           String
+  paymentAmount      Float?
+  iban               String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}

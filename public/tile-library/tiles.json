@@ -1,0 +1,20 @@
+[
+  {
+    "id": "custom-1771147857776",
+    "name": "akdeniz",
+    "description": "",
+    "prompt": "akdeniz floor tiles, photorealistic, 8k quality",
+    "negativePrompt": "blurry, distorted, cartoon, low quality, deformed walls, changed furniture, altered room structure",
+    "imagePath": "/tile-library/custom-1771147857776.jpg",
+    "createdAt": "2026-02-15T09:30:57.779Z"
+  },
+  {
+    "id": "custom-1771148075825",
+    "name": "sss",
+    "description": "",
+    "prompt": "sss floor tiles, photorealistic, 8k quality",
+    "negativePrompt": "blurry, distorted, cartoon, low quality, deformed walls, changed furniture, altered room structure",
+    "imagePath": "/tile-library/custom-1771148075825.jpg",
+    "createdAt": "2026-02-15T09:34:35.829Z"
+  }
+]
